@@ -20,11 +20,6 @@ function App() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  useEffect(() => {
-    fetchEmployees();
-    fetchDepartments();
-  }, [selectedDepartment]);
-
   const fetchEmployees = async () => {
     try {
       const url = selectedDepartment 
@@ -49,6 +44,12 @@ function App() {
       console.error('Failed to fetch departments:', err);
     }
   };
+
+  useEffect(() => {
+    fetchEmployees();
+    fetchDepartments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDepartment]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
